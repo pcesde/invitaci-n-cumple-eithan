@@ -8,11 +8,10 @@
 <title>1er añito de Eithan</title>
 
 <!-- WHATSAPP -->
-<meta property="og:title" content="¡Invitación al cumple de Eithan! 🎁🎀">
+<meta property="og:title" content="¡Invitación al cumple de Eithan! 🎁">
 <meta property="og:description"
 content="Te invitamos a sumarte a este gran día. Ingresa aquí para ver todos los detalles 👇">
 
-<!-- IMPORTANTE: usar PNG/JPG para vista previa -->
 <meta property="og:image"
 content="https://TU-DOMINIO.com/preview.jpg">
 
@@ -32,39 +31,30 @@ overflow:hidden;
 }
 
 /* Pantalla inicio */
-
 .pantalla-inicio{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100vh;
-
 display:flex;
 justify-content:center;
 align-items:center;
-
 background:#000;
-
 z-index:9999;
-
 transition:.8s;
 }
 
 .boton-ingresar{
 padding:16px 30px;
-
 border:none;
-
 border-radius:30px;
-
 font-size:16px;
-
 font-weight:bold;
-
 cursor:pointer;
 }
 
+/* GALERIA */
 .galeria{
 display:flex;
 flex-direction:column;
@@ -72,69 +62,89 @@ flex-direction:column;
 
 .imagen{
 height:100vh;
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
 }
 
 .imagen img{
-
 width:100%;
-
 height:100%;
-
 object-fit:contain;
-
-display:block;
 }
 
 /* BOTONES */
-
 .botones{
-
 position:fixed;
-
 bottom:20px;
-
 right:20px;
-
 display:flex;
-
 flex-direction:column;
-
-gap:10px;
-
+gap:12px;
 z-index:999;
-
 }
 
-.btn{
-
-width:60px;
-
-height:60px;
-
-border-radius:50%;
-
-border:none;
-
-color:white;
-
-font-size:22px;
-
-cursor:pointer;
-
-}
-
-.wa{
+/* WhatsApp */
+.btn.wa{
 background:#25D366;
+width:65px;
+height:65px;
+border-radius:50%;
+border:none;
+color:white;
+font-size:22px;
+cursor:pointer;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
 }
 
-.map{
-background:#4285F4;
+.btn.wa span{
+font-size:10px;
+}
+
+/* Ubicación */
+.btn.mapa{
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px 16px;
+border-radius:18px;
+border:none;
+cursor:pointer;
+color:white;
+background:linear-gradient(135deg,#4285F4,#5BA7FF);
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
+}
+
+.btn.mapa:active{
+transform:scale(.95);
+}
+
+.texto-lugar{
+text-align:left;
+font-size:13px;
+font-weight:bold;
+line-height:1.2;
+}
+
+/* Cómo llegar */
+.btn.ruta{
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px 16px;
+border-radius:18px;
+border:none;
+cursor:pointer;
+color:white;
+background:linear-gradient(135deg,#FF9800,#FFB74D);
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
+}
+
+.btn.ruta:active{
+transform:scale(.95);
 }
 
 </style>
@@ -143,132 +153,85 @@ background:#4285F4;
 
 <body>
 
+<!-- BOTONES -->
 <div class="botones">
 
-<button class="btn wa"
-onclick="whatsapp()">💬</button>
+<button class="btn wa" onclick="whatsapp()">
+💬 <span>OK</span>
+</button>
 
-<button class="btn map"
-onclick="ubicacion()">📍</button>
-
+<button class="btn mapa" onclick="ubicacion()">
+📍
+<div class="texto-lugar">
+Quinta Los Pinos<br>
+Lambaré - Paraguay
 </div>
+</button>
 
-
-<div
-id="pantallaInicio"
-class="pantalla-inicio">
-
-<button
-class="boton-ingresar"
-onclick="comenzarInvitacion()">
-
-ABRIR INVITACIÓN 🎉
-
+<button class="btn ruta" onclick="comoLlegar()">
+🧭 Cómo llegar
 </button>
 
 </div>
 
+<!-- INICIO -->
+<div id="pantallaInicio" class="pantalla-inicio">
+<button class="boton-ingresar" onclick="comenzarInvitacion()">
+ABRIR INVITACIÓN 🎉
+</button>
+</div>
 
-<audio
-id="musicaFondo"
-loop
-preload="auto">
-
-<source
-src="musica-bautismo.mp3"
-type="audio/mpeg">
-
+<!-- AUDIO -->
+<audio id="musicaFondo" loop preload="auto">
+<source src="musica-bautismo.mp3" type="audio/mpeg">
 </audio>
 
-
+<!-- GALERIA -->
 <div class="galeria">
 
-<div class="imagen">
-<img src="./1.svg" alt="">
-</div>
-
-<div class="imagen">
-<img src="./2.svg" alt="">
-</div>
-
-<div class="imagen">
-<img src="./3.svg" alt="">
-</div>
-
-<div class="imagen">
-<img src="./4.svg" alt="">
-</div>
+<div class="imagen"><img src="./1.svg"></div>
+<div class="imagen"><img src="./2.svg"></div>
+<div class="imagen"><img src="./3.svg"></div>
+<div class="imagen"><img src="./4.svg"></div>
 
 </div>
-
 
 <script>
 
-const audio =
-document.getElementById("musicaFondo");
+const audio = document.getElementById("musicaFondo");
 
 function comenzarInvitacion(){
-
-const pantalla =
-document.getElementById("pantallaInicio");
-
-pantalla.style.opacity="0";
-
-setTimeout(()=>{
-pantalla.style.display="none";
-},800);
-
+document.getElementById("pantallaInicio").style.display="none";
 document.body.style.overflow="auto";
+audio.play().catch(()=>{});
+}
 
-audio.play()
-.catch(()=>{
-console.log("Audio bloqueado");
+document.addEventListener("visibilitychange",()=>{
+if(document.hidden){
+audio.pause();
+}else{
+audio.play().catch(()=>{});
+}
 });
 
-}
-
-
-document.addEventListener(
-"visibilitychange",
-()=>{
-
-if(document.hidden){
-
-audio.pause();
-
-}else{
-
-audio.play()
-.catch(()=>{});
-
-}
-
-}
-);
-
 function whatsapp(){
-
-let mensaje =
-"Confirmo asistencia al cumpleaños. Mi nombre es:";
-
-window.open(
-"https://wa.me/595981011531?text="
-+
-encodeURIComponent(mensaje)
-);
-
+let mensaje="Confirmo asistencia al cumpleaños. Mi nombre es:";
+window.open("https://wa.me/595981011531?text="+encodeURIComponent(mensaje));
 }
 
 function ubicacion(){
+window.open("https://maps.app.goo.gl/o5QvAw4BDHEiffHUA");
+}
 
-window.open(
-"https://maps.app.goo.gl/o5QvAw4BDHEiffHUA"
-);
-
+function comoLlegar(){
+let destino="ScutiPARK
+MFPM+P74 Quinta Villamayor, San Lorenzo 111405
+";
+let url="https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(destino);
+window.open(url);
 }
 
 </script>
 
 </body>
-
 </html>
